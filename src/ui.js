@@ -33,14 +33,10 @@ export const handleInput = (input, todos) => {
     return;
   }
 
-  // otherwise → create todo
-  if (input.length > 0) {
-    createTodo(input);
-  }
-}
-
-function createTodo(input) {
-    create(randomUUID(), input, new Date().toISOString())
+    // otherwise → create todo
+    if (input.length > 0) {
+        create(randomUUID(), input)
+    }
 }
 
 export const clearScreen = () => process.stdout.write('\x1Bc');

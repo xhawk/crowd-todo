@@ -8,7 +8,8 @@ export const getAll = () => {
     `).all();
 }
 
-export const create = (id, title, now) => {
+export const create = (id, title) => {
+    const now = new Date().toISOString();
     db.prepare(`
         INSERT INTO todos (id, title, created_at)
         VALUES (?, ?, ?)
@@ -16,17 +17,20 @@ export const create = (id, title, now) => {
 }
 
 export const remove = (id) => {
+    const now = new Date().toISOString();
     db.prepare(`
         UPDATE todos 
-        SET deleted_at = ?
+        SET deleted_at = ?, updated_at = ?
         WHERE id = ?
-    `).run(new Date().toISOString(), id);
+    `).run(now, now, id);
 }
 
 export const toggle = (id) => {
+    const now = new Date().toISOString();
     db.prepare(`
         UPDATE todos
-        SET completed = 1 - (SELECT completed FROM todos WHERE id = ?)
+        SET completed = CASE WHEN completed = 0 THEN 1 ELSE 0 END, 
+            updated_at = ? 
         WHERE id = ?
-    `).run(id, id)
+    `).run(now, id);
 }
