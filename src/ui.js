@@ -2,7 +2,7 @@ import { randomUUID } from "crypto";
 import { create, remove, toggle } from "./todos.js";
 
 export const render = (todos) => {
-  console.log('---- Tehtävät ----\n');
+  console.log('--- Tehtävät ---\n');
 
   todos.forEach((t, i) => {
     const mark = t.completed ? '[x]' : '[ ]';
@@ -22,6 +22,9 @@ export const handleInput = (input, todos) => {
   // toggle: x 2
   if (input.startsWith('x ')) {
     const index = parseInt(input.slice(2)) - 1;
+    if (isNaN(index) || !todos[index]) {
+        return "Virheellinen tehtävänumero";
+    }
     if (todos[index]) toggle(todos[index].id);
     return;
   }
@@ -29,6 +32,9 @@ export const handleInput = (input, todos) => {
   // delete: d 3
   if (input.startsWith('d ')) {
     const index = parseInt(input.slice(2)) - 1;
+    if (isNaN(index) || !todos[index]) {
+        return "Virheellinen tehtävänumero";
+    }
     if (todos[index]) remove(todos[index].id);
     return;
   }
@@ -40,3 +46,4 @@ export const handleInput = (input, todos) => {
 }
 
 export const clearScreen = () => process.stdout.write('\x1Bc');
+

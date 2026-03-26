@@ -16,7 +16,11 @@ async function loop() {
         
         const input = await rl.question('> ');
 
-        handleInput(input, todos);
+        const message = handleInput(input, todos);
+        if (message) {
+            console.error(message);
+            await rl.question("Paina Enter jatkaaksesi...");
+        }
     }
 }
 
