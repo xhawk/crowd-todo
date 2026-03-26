@@ -1,0 +1,16 @@
+{
+  "name": "crowd-todo",
+  "version": "1.0.0",
+  "description": "Todo app",
+  "license": "ISC",
+  "author": "Tomi Savolainen",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.8.0"
+  }
+}
