@@ -2,7 +2,7 @@ import { randomUUID } from "crypto";
 import { create, remove, toggle } from "./todos.js";
 
 export const render = (todos) => {
-  console.log('- Tehtävät -\n');
+  console.log('---- Tehtävät ----\n');
 
   todos.forEach((t, i) => {
     const mark = t.completed ? '[x]' : '[ ]';
